@@ -1,0 +1,28 @@
+{
+  "headers": [
+    {
+      "source": "/uploads/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!api/|uploads/|assets/|sitemap.xml|robots.txt|favicon.svg|favicon.ico).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

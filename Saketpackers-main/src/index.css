@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Barlow", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Barlow Condensed", "Barlow", ui-sans-serif, system-ui, sans-serif;
+
+  /* Signboard navy */
+  --color-navy-50: #eef3fb;
+  --color-navy-100: #d9e4f5;
+  --color-navy-200: #b3c9e9;
+  --color-navy-300: #85a6d7;
+  --color-navy-400: #4f7dbc;
+  --color-navy-500: #2c5d9d;
+  --color-navy-600: #1a477f;
+  --color-navy-700: #0c2d5c;
+  --color-navy-800: #0a2650;
+  --color-navy-900: #071e40;
+  --color-navy-950: #04122b;
+
+  /* Signboard red */
+  --color-brand-50: #fdecec;
+  --color-brand-100: #fbd2d3;
+  --color-brand-200: #f6a5a7;
+  --color-brand-500: #e01f26;
+  --color-brand-600: #c31420;
+  --color-brand-700: #9d0f1a;
+
+  /* Signboard yellow / gold */
+  --color-gold-100: #fff3cc;
+  --color-gold-200: #ffe699;
+  --color-gold-300: #ffd34d;
+  --color-gold-400: #ffc519;
+  --color-gold-500: #f5b301;
+  --color-gold-600: #d99a00;
+  --color-gold-700: #b57f00;
+
+  /* Signboard green accent */
+  --color-leaf-50: #e9f7ef;
+  --color-leaf-100: #cdeed9;
+  --color-leaf-500: #16a34a;
+  --color-leaf-600: #128c4b;
+  --color-leaf-700: #0d6e3b;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-white text-navy-900 font-sans antialiased;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+  /* Never allow accidental horizontal scroll/edge gutters on phones.
+     'clip' (unlike 'hidden') keeps position:sticky working normally. */
+  overflow-x: clip;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  min-width: 0;
+}
+
+/* Remove legacy tap delay and improve INP on touch devices */
+a,
+button,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: #f5b301;
+  color: #04122b;
+}
+
+/* Sections placed under the sticky header / above mobile CTA bar */
+.scroll-target {
+  scroll-margin-top: 96px;
+}
+
+@media (max-width: 1023px) {
+  .page-shell {
+    /* Clear the fixed mobile action bar + device safe-area completely */
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Subtle route-line divider used between sections */
+.route-line {
+  background-image: linear-gradient(90deg, #0c2d5c 0 35%, transparent 35% 45%, #e01f26 45% 80%, transparent 80% 90%, #f5b301 90% 100%);
+  height: 4px;
+}
+
+/* Diagonal signboard texture for dark panels */
+.board-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0 2px,
+    transparent 2px 14px
+  );
+}
+
+/* Dot grid used on light panels */
+.dot-grid {
+  background-image: radial-gradient(rgba(12, 45, 92, 0.12) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+}
+
+/* Hide scrollbar for horizontal chip rows on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* ───────────── Hidden Google Review experience ───────────── */
+@theme {
+  --color-ink: #080b14;
+  --color-line: #ffffff14;
+  --color-gold: #f5b841;
+  --color-gold2: #e08c1a;
+  --color-mist: #9aa5bc;
+  --color-mint: #45d6a8;
+  --font-review-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-review-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+.review-surface {
+  font-family: var(--font-review-sans);
+  color: #fff;
+  background-color: var(--color-ink);
+}
+.review-surface .aura {
+  pointer-events: none;
+  z-index: 0;
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(120% 55% at 50% -10%, rgba(245, 184, 65, 0.16), transparent 62%),
+    radial-gradient(90% 45% at 100% 105%, rgba(69, 214, 168, 0.1), transparent 60%);
+}
+.review-surface.grain::after {
+  content: "";
+  pointer-events: none;
+  z-index: 1;
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.review-surface .tap {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.review-surface .text-balance2 {
+  text-wrap: balance;
+}
+.review-surface .hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+.review-surface .hide-scroll {
+  scrollbar-width: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-surface *,
+  .review-surface *::before,
+  .review-surface *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}
+@media print {
+  .review-surface .qr-print-wrap {
+    width: 100%;
+    max-width: 120mm;
+    margin: 0 auto;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
